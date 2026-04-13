@@ -1,0 +1,12 @@
+<!--
+<svg width="140" height="70" viewBox="0 0 140 70" xmlns="http://www.w3.org/2000/svg">
+<rect width="140" height="70" fill="#1b3a2f" rx="6"/>
+<rect x="60" y="30" width="20" height="40" fill="#c9a15a" rx="2"/>
+<text x="70" y="20" text-anchor="middle" font-family="Georgia" font-size="14" letter-spacing="2" fill="#f4eadc">JANN</text>
+</svg>
+-->
+<svg width="140" height="70" viewBox="0 0 140 70" xmlns="http://www.w3.org/2000/svg">
+<rect width="140" height="70" fill="#2a4b40" rx="6"/>
+<rect x="60" y="30" width="20" height="40" fill="#d0b67c" rx="2"/>
+<text x="70" y="20" text-anchor="middle" font-family="Georgia" font-size="14" letter-spacing="2" fill="#f4eadc">JANN</text>
+</svg>
