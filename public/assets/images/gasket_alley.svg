@@ -1,5 +1,11 @@
+<!--<svg width="140" height="70" viewBox="0 0 140 70" xmlns="http://www.w3.org/2000/svg">
+<rect width="140" height="70" fill="#3D2F2A" rx="6"/>
+<rect x="60" y="30" width="20" height="40" fill="#D6B38C" rx="2"/>
+<text x="70" y="20" text-anchor="middle" font-family="Georgia" font-size="14" letter-spacing="2" fill="#F2E2CE">GASKET ALLEY</text>
+</svg>
+-->
 <svg width="140" height="70" viewBox="0 0 140 70" xmlns="http://www.w3.org/2000/svg">
-<rect width="140" height="70" fill="#2F2A26" rx="6"/>
-<rect x="60" y="30" width="20" height="40" fill="#E8DCC8" rx="2"/>
-<text x="70" y="20" text-anchor="middle" font-family="Georgia" font-size="14" letter-spacing="2" fill="#fde5d4">THE GASKET ALLEY</text>
+<rect width="140" height="70" fill="#5A4B44" rx="6"/>
+<rect x="60" y="30" width="20" height="40" fill="#E3CFB2" rx="2"/>
+<text x="70" y="20" text-anchor="middle" font-family="Georgia" font-size="14" letter-spacing="2" fill="#F7EBDD">GASKET ALLEY</text>
 </svg>

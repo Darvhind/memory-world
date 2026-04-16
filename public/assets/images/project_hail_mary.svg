@@ -1,0 +1,8 @@
+<svg width="140" height="70" viewBox="0 0 140 70" xmlns="http://www.w3.org/2000/svg">
+<rect width="140" height="70" fill="#050816" rx="6"/>
+<rect x="10" y="10" width="120" height="50" fill="#0E1A2F" rx="6"/>
+<circle cx="40" cy="35" r="6" fill="#7CFFB2"/>
+<circle cx="70" cy="30" r="2" fill="#FFFFFF"/>
+<circle cx="90" cy="40" r="1.5" fill="#A9C7FF"/>
+<text x="70" y="20" text-anchor="middle" font-family="Georgia" font-size="14" letter-spacing="2" fill="#EAF2FF">HAIL MARY</text>
+</svg>

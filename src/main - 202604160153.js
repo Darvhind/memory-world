@@ -2,113 +2,40 @@ import './style.css'
 import Phaser from "phaser";
 
 const memoryData = [
-  { id: "oga", x: 625, y: 300, date: "2026-01-17", group: 1, title: "The Origin Story", text: "Field Experiment #1.\nInitial contact established with subject known as Arya\nHypothesis: promising conversational range and suspiciously strong opinions.\nFurther observance required.\nNote: abandoned coffee in favour of first hojicha - unexpectedly delightful results." },
-  { id: "kenny_hills", x: 775, y: 300, date: "2026-01-17", group: 1, title: "XXX", text: "Dinner #1.\n\nObservation:\nSubject ordered  a salad which she did not finish.\nSuper endearing space themed earing.\nLore acquired on teabag tattoo and bestie." },
-  { id: "durian", x: 925, y: 300, date: "2026-01-17", group: 1, title: "XXX", text: "YYY" },
-  { id: "ni_kizuko", x: 1650, y: 700, date: "2026-01-23", group: 2, title: "XXX", text: "YYY" },
-  { id: "wawafish", x: 1800, y: 700, date: "2026-01-23", group: 2, title: "First brush with the Mafia", text: " " },
-  { id: "strangers", x: 625, y: 1100, date: "2026-02-08", group: 3, title: "XXX", text: "YYY" },
-  { id: "amcorp", x: 775, y: 1100, date: "2026-02-08", group: 3, title: "XXX", text: "YYY" },
-  { id: "anw", x: 925, y: 1100, date: "2026-02-08", group: 3, title: "XXX", text: "YYY" },
-  { id: "atap", x: 1500, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "eternyl", x: 1650, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "pampas", x: 1800, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "parking", x: 1950, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "tofu_gelato", x: 625, y: 1900, date: "2026-02-20", group: 5, title: "XXX", text: "YYY" },
-  { id: "plan_b", x: 775, y: 1900, date: "2026-02-20", group: 5, title: "XXX", text: "YYY" },
-  { id: "jann", x: 925, y: 1900, date: "2026-02-20", group: 5, title: "XXX", text: "YYY" },
-  { id: "koyaku", x: 1650, y: 2300, date: "2026-03-03", group: 6, title: "XXX", text: "YYY" },
-  { id: "tdsc", x: 1800, y: 2300, date: "2026-03-03", group: 6, title: "XXX", text: "YYY" },
-  { id: "healy_mac", x: 700, y: 2700, date: "2026-03-07", group: 7, title: "XXX", text: "YYY" },
-  { id: "tsutaya", x: 850, y: 2700, date: "2026-03-07", group: 7, title: "XXX", text: "YYY" },
-  { id: "poblano", x: 1650, y: 3100, date: "2026-03-13", group: 8, title: "XXX", text: "YYY" },
-  { id: "deceased", x: 1800, y: 3100, date: "2026-03-13", group: 8, title: "XXX", text: "YYY" },
-  { id: "gasket_alley", x: 475, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "fluffed", x: 625, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "eternyl_1", x: 775, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "chachi", x: 925, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "Honey and sauce discussion. could not tell if we got tomato or chili sauce" },
-  { id: "project_hail_mary", x: 1075, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "heritage_pizza", x: 1575, y: 3900, date: "2026-04-03", group: 10, title: "XXX", text: "YYY" },
-  { id: "licky_chan", x: 1725, y: 3900, date: "2026-04-03", group: 10, title: "XXX", text: "YYY" },
-  { id: "baijiu", x: 1875, y: 3900, date: "2026-04-03", group: 10, title: "XXX", text: "YYY" },
-  { id: "good_coffee", x: 550, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "fowlboys", x: 700, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "tdsc1", x: 850, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "brew_house", x: 1000, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "blank", x: 1000, y: 4300, date: "2050-01-01", group: 100, title: "?", text: "" }
+  { id: "oga", x: 625, y: 300, date: 1, title: "The Origin Story", text: "Field Experiment #1.\nInitial contact established with subject known as Arya\nHypothesis: promising conversational range and suspiciously strong opinions.\nFurther observance required.\nNote: abandoned coffee in favour of first hojicha - unexpectedly delightful results." },
+  { id: "kenny_hills", x: 775, y: 300, date: 1, title: "XXX", text: "Dinner #1.\n\nObservation:\nSubject ordered  a salad which she did not finish.\nSuper endearing space themed earing.\nLore acquired on teabag tattoo and bestie." },
+  { id: "durian", x: 925, y: 300, date: 1, title: "XXX", text: "YYY" },
+  { id: "ni_kizuko", x: 1650, y: 700, date: 2, title: "XXX", text: "YYY" },
+  { id: "wawafish", x: 1800, y: 700, date: 2, title: "First brush with the Mafia", text: " " },
+  { id: "strangers", x: 625, y: 1100, date: 3, title: "XXX", text: "YYY" },
+  { id: "amcorp", x: 775, y: 1100, date: 3, title: "XXX", text: "YYY" },
+  { id: "anw", x: 925, y: 1100, date: 3, title: "XXX", text: "YYY" },
+  { id: "atap", x: 1500, y: 1500, date: 4, title: "XXX", text: "YYY" },
+  { id: "eternyl", x: 1650, y: 1500, date: 4, title: "XXX", text: "YYY" },
+  { id: "pampas", x: 1800, y: 1500, date: 4, title: "XXX", text: "YYY" },
+  { id: "parking", x: 1950, y: 1500, date: 4, title: "XXX", text: "YYY" },
+  { id: "tofu_gelato", x: 625, y: 1900, date: 5, title: "XXX", text: "YYY" },
+  { id: "plan_b", x: 775, y: 1900, date: 5, title: "XXX", text: "YYY" },
+  { id: "jann", x: 925, y: 1900, date: 5, title: "XXX", text: "YYY" },
+  { id: "koyaku", x: 1650, y: 2300, date: 6, title: "XXX", text: "YYY" },
+  { id: "tdsc", x: 1800, y: 2300, date: 6, title: "XXX", text: "YYY" },
+  { id: "healy_mac", x: 700, y: 2700, date: 7, title: "XXX", text: "YYY" },
+  { id: "tsutaya", x: 850, y: 2700, date: 7, title: "XXX", text: "YYY" },
+  { id: "poblano", x: 1650, y: 3100, date: 8, title: "XXX", text: "YYY" },
+  { id: "deceased", x: 1800, y: 3100, date: 8, title: "XXX", text: "YYY" },
+  { id: "gasket_alley", x: 475, y: 3500, date: 9, title: "XXX", text: "YYY" },
+  { id: "fluffed", x: 625, y: 3500, date: 9, title: "XXX", text: "YYY" },
+  { id: "eternyl_1", x: 775, y: 3500, date: 9, title: "XXX", text: "YYY" },
+  { id: "chachi", x: 925, y: 3500, date: 9, title: "XXX", text: "Honey and sauce discussion. could not tell if we got tomato or chili sauce" },
+  { id: "project_hail_mary", x: 1075, y: 3500, date: 9, title: "XXX", text: "YYY" },
+  { id: "heritage_pizza", x: 1575, y: 3900, date: 10, title: "XXX", text: "YYY" },
+  { id: "licky_chan", x: 1725, y: 3900, date: 10, title: "XXX", text: "YYY" },
+  { id: "baijiu", x: 1875, y: 3900, date: 10, title: "XXX", text: "YYY" },
+  { id: "good_coffee", x: 550, y: 4300, date: 11, title: "XXX", text: "YYY" },
+  { id: "fowlboys", x: 700, y: 4300, date: 11, title: "XXX", text: "YYY" },
+  { id: "tdsc1", x: 850, y: 4300, date: 11, title: "XXX", text: "YYY" },
+  { id: "brew_house", x: 1000, y: 4300, date: 11, title: "XXX", text: "YYY" }
 ];
-
-function groupMemoriesByDate(memories) {
-  const sorted = [...memories].sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
-  );
-
-  const groups = {};
-
-  sorted.forEach(m => {
-    if (!groups[m.date]) groups[m.date] = [];
-    groups[m.date].push(m);
-  });
-
-  return groups;
-}
-
-function computeTimelineLayout(groups) {
-  const dates = Object.keys(groups).sort(
-    (a, b) => new Date(a) - new Date(b)
-  );
-
-  const layout = [];
-
-  let currentY = 300;
-
-  const baseGap = 200;
-  const gapScale = 120;
-
-  for (let i = 0; i < dates.length; i++) {
-    const date = dates[i];
-
-    if (i > 0) {
-      const prevDate = new Date(dates[i - 1]);
-      const currDate = new Date(date);
-
-      const diffDays = (currDate - prevDate) / (1000 * 60 * 60 * 24);
-
-      const gap = Math.min(
-        1000,
-        baseGap + Math.pow(diffDays, 0.7) * gapScale
-      );
-
-      currentY += gap;
-    }
-
-    layout.push({
-      date,
-      y: currentY,
-      memories: groups[date]
-    });
-  }
-
-  return layout;
-}
-
-function assignXPositions(layout, worldWidth) {
-  const centerX = worldWidth / 2;
-  const spacing = 150;
-
-  layout.forEach(group => {
-    const count = group.memories.length;
-    const totalWidth = (count - 1) * spacing;
-    const startX = centerX - totalWidth / 2;
-
-    group.memories.forEach((m, i) => {
-      m.x = startX + i * spacing;
-      m.y = group.y;
-    });
-  });
-
-  return layout;
-}
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -126,7 +53,7 @@ class MainScene extends Phaser.Scene {
 
   create() {
     this.worldWidth = 2500;
-    //this.worldHeight = 4750;
+    this.worldHeight = 4750;
     this.physics.world.setBounds(0, 0, this.worldWidth, this.worldHeight);
 
     // Player
@@ -163,93 +90,82 @@ class MainScene extends Phaser.Scene {
       fontStyle: "bold"
     }).setOrigin(0.5, 0).setScrollFactor(0);
 
-    // Timeline layout
-    const groups = groupMemoriesByDate(memoryData);
+    // group memories by date
+    const groups = {};
 
-    let layout = computeTimelineLayout(groups);
+    memoryData.forEach(m => {
+      if (!groups[m.date]) groups[m.date] = [];
+      groups[m.date].push(m);
+    });
 
-    layout = assignXPositions(layout, this.worldWidth);
-
-    // Flatten
-    const positionedMemories = layout.flatMap(g => g.memories);
-
-    // Update world height based on layout
-    const lastY = Math.max(...positionedMemories.map(m => m.y));
-    this.worldHeight = lastY + 500;
-    this.physics.world.setBounds(0, 0, this.worldWidth, this.worldHeight);
-
-    // Landmarks
     this.landmarks = [];
 
-    positionedMemories.forEach(m => {
-      const landmark = this.add.sprite(m.x, m.y, m.id);
+    Object.entries(groups).forEach(([date, group], groupIndex) => {
 
-      this.physics.add.existing(landmark, true);
+      // === 1. Island anchor (keeps your timeline intact) ===
+      const centerX = group.reduce((sum, m) => sum + m.x, 0) / group.length;
+      const centerY = group.reduce((sum, m) => sum + m.y, 0) / group.length;
 
-      landmark.memoryId = m.id;
-      landmark.interactionRadius = 120;
+      // === 2. Give each island a "direction" (varies per date) ===
+      const baseAngle = Phaser.Math.DegToRad(Phaser.Math.Between(0, 180));
+      const driftStrength = 120 + group.length * 20;
 
-      this.landmarks.push(landmark);
-    });
+      const placedPoints = [];
 
-    // Timeline spine
+      group.forEach((m, i) => {
 
-    const graphics = this.add.graphics();
-    graphics.setDepth(-10);
-    graphics.lineStyle(2, 0xcccccc, 1);
+        let tries = 0;
+        let finalX, finalY;
 
-    const spineX = this.worldWidth / 5;
+        do {
+          // === 3. Directional drift (main structure) ===
+          const t = i / (group.length - 1 || 1); // normalized 0 → 1
+          const driftX = Math.cos(baseAngle) * driftStrength * (t - 0.5);
+          const driftY = Math.sin(baseAngle) * driftStrength * (t - 0.5);
 
-    layout.forEach((group, i) => {
-      if (i === 0) return;
+          // === 4. Layered noise (break symmetry) ===
+          const noiseX =
+            Phaser.Math.Between(-120, 120) +
+            Math.sin(i * 1.3 + groupIndex) * 40;
 
-      const prev = layout[i - 1];
+          const noiseY =
+            Phaser.Math.Between(-80, 80) +
+            Math.cos(i * 1.7 + groupIndex) * 30;
 
-      graphics.strokeLineShape(
-        new Phaser.Geom.Line(
-          spineX,
-          prev.y,
-          spineX,
-          group.y
-        )
-      );
-    });
+          finalX = centerX + driftX + noiseX;
+          finalY = centerY + driftY + noiseY;
 
-    // Date anchors
-    layout.forEach(group => {
-      // Anchor dot sits on spine
-      const dot = this.add.circle(
-        spineX,
-        group.y,
-        40,
-        0x222222
-      ).setDepth(5);
+          tries++;
 
-      // Label slightly offset from spine (right side)
-      if (group.date === "2050-01-01") return;
-      const label = this.add.text(
-        spineX,
-        group.y,
-        group.date,
-        {
-          fontSize: "16px",
-          color: "#444",
-          backgroundColor: "rgba(255,255,255,1)",
-          padding: { x: 6, y: 2 }
-        }
-      )
-      .setOrigin(0, 0.5)
-      .setDepth(5);
+          // === 5. Avoid overlap (simple spacing check) ===
+        } while (
+          placedPoints.some(p =>
+            Phaser.Math.Distance.Between(p.x, p.y, finalX, finalY) < 100
+          ) && tries < 20
+        );
 
-      // subtle floating animation
-      this.tweens.add({
-        targets: label,
-        y: label.y - 5,
-        duration: 2000,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut"
+        placedPoints.push({ x: finalX, y: finalY });
+
+        const landmark = this.add.sprite(finalX, finalY, m.id);
+
+        this.physics.add.existing(landmark, true);
+        landmark.memoryId = m.id;
+        landmark.interactionRadius = 120;
+
+        this.landmarks.push(landmark);
       });
+
+      const graphics = this.add.graphics();
+      graphics.lineStyle(2, 0x000000, 0.15);
+
+      for (let i = 0; i < placedPoints.length - 1; i++) {
+        const p1 = placedPoints[i];
+        const p2 = placedPoints[i + 1];
+
+        graphics.strokeLineShape(
+          new Phaser.Geom.Line(p1.x, p1.y, p2.x, p2.y)
+        );
+      }
     });
 
     // Prompt text
