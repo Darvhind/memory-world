@@ -470,7 +470,7 @@ class MainScene extends Phaser.Scene {
     ).setOrigin(0.5);
 
     const hint = this.add.text(
-      this.scale.width / 2 - 40,
+      this.scale.width / 2 - 50,
       this.scale.height / 2 + 120,
       "Press ESC to close",
       { fontSize: "14px", color: "#666" }
@@ -747,7 +747,7 @@ class MainScene extends Phaser.Scene {
   }
 
   update() {
-    const speed = 3000;
+    const speed = 800;
     this.currentMemory = null;
     this.promptText.setVisible(false);
 
