@@ -1,42 +1,77 @@
 import './style.css'
+import PreloadScene from './bootscene'
+import { memoryData } from './memoryData'
 import Phaser from "phaser";
 
-const memoryData = [
-  { id: "oga", x: 625, y: 300, date: "2026-01-17", group: 1, title: "The Origin Story", text: "Field Experiment #1.\nInitial contact established with subject known as Arya\nHypothesis: promising conversational range and suspiciously strong opinions.\nFurther observance required.\nNote: abandoned coffee in favour of first hojicha - unexpectedly delightful results." },
-  { id: "kenny_hills", x: 775, y: 300, date: "2026-01-17", group: 1, title: "XXX", text: "Dinner #1.\n\nObservation:\nSubject ordered  a salad which she did not finish.\nSuper endearing space themed earing.\nLore acquired on teabag tattoo and bestie." },
-  { id: "durian", x: 925, y: 300, date: "2026-01-17", group: 1, title: "XXX", text: "YYY" },
-  { id: "ni_kizuko", x: 1650, y: 700, date: "2026-01-23", group: 2, title: "XXX", text: "YYY" },
-  { id: "wawafish", x: 1800, y: 700, date: "2026-01-23", group: 2, title: "First brush with the Mafia", text: " " },
-  { id: "strangers", x: 625, y: 1100, date: "2026-02-08", group: 3, title: "XXX", text: "YYY" },
-  { id: "amcorp", x: 775, y: 1100, date: "2026-02-08", group: 3, title: "XXX", text: "YYY" },
-  { id: "anw", x: 925, y: 1100, date: "2026-02-08", group: 3, title: "XXX", text: "YYY" },
-  { id: "atap", x: 1500, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "eternyl", x: 1650, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "pampas", x: 1800, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "parking", x: 1950, y: 1500, date: "2026-02-14", group: 4, title: "XXX", text: "YYY" },
-  { id: "tofu_gelato", x: 625, y: 1900, date: "2026-02-20", group: 5, title: "XXX", text: "YYY" },
-  { id: "plan_b", x: 775, y: 1900, date: "2026-02-20", group: 5, title: "XXX", text: "YYY" },
-  { id: "jann", x: 925, y: 1900, date: "2026-02-20", group: 5, title: "XXX", text: "YYY" },
-  { id: "koyaku", x: 1650, y: 2300, date: "2026-03-03", group: 6, title: "XXX", text: "YYY" },
-  { id: "tdsc", x: 1800, y: 2300, date: "2026-03-03", group: 6, title: "XXX", text: "YYY" },
-  { id: "healy_mac", x: 700, y: 2700, date: "2026-03-07", group: 7, title: "XXX", text: "YYY" },
-  { id: "tsutaya", x: 850, y: 2700, date: "2026-03-07", group: 7, title: "XXX", text: "YYY" },
-  { id: "poblano", x: 1650, y: 3100, date: "2026-03-13", group: 8, title: "XXX", text: "YYY" },
-  { id: "deceased", x: 1800, y: 3100, date: "2026-03-13", group: 8, title: "XXX", text: "YYY" },
-  { id: "gasket_alley", x: 475, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "fluffed", x: 625, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "eternyl_1", x: 775, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "chachi", x: 925, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "Honey and sauce discussion. could not tell if we got tomato or chili sauce" },
-  { id: "project_hail_mary", x: 1075, y: 3500, date: "2026-03-22", group: 9, title: "XXX", text: "YYY" },
-  { id: "heritage_pizza", x: 1575, y: 3900, date: "2026-04-03", group: 10, title: "XXX", text: "YYY" },
-  { id: "licky_chan", x: 1725, y: 3900, date: "2026-04-03", group: 10, title: "XXX", text: "YYY" },
-  { id: "baijiu", x: 1875, y: 3900, date: "2026-04-03", group: 10, title: "XXX", text: "YYY" },
-  { id: "good_coffee", x: 550, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "fowlboys", x: 700, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "tdsc1", x: 850, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "brew_house", x: 1000, y: 4300, date: "2026-04-11", group: 11, title: "XXX", text: "YYY" },
-  { id: "blank", x: 1000, y: 4300, date: "2050-01-01", group: 100, title: "?", text: "" }
-];
+// mobile block prior to game load
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function renderMobileGate() {
+  const app = document.getElementById("game-container");
+
+  if (!app) {
+    console.error("Missing #game-container in HTML");
+    return;
+  }
+
+  app.innerHTML = `
+    <div style="
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      box-sizing: border-box;
+      background: #0f0f0f;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    ">
+      
+      <div style="max-width: 320px;">
+        <h1 style="font-size: 26px; margin-bottom: 16px;">
+          Heyy :D I made something for you 💌
+        </h1>
+
+        <p style="font-size: 16px; opacity: 0.8; margin-bottom: 32px;">
+          It really feels better on a laptop though 💻
+        </p>
+
+        <button id="wa-btn" style="
+          width: 100%;
+          padding: 16px;
+          font-size: 16px;
+          font-weight: bold;
+          border: none;
+          border-radius: 12px;
+          background: #25D366;
+          color: white;
+        ">
+          Send via WhatsApp
+        </button>
+      </div>
+    </div>
+  `;
+
+  const btn = document.getElementById("wa-btn");
+
+  btn.addEventListener("click", () => {
+    const url = window.location.href;
+
+    const message =
+      "Heyy :D Send this to yourself please 💌\n\n" +
+      "Didn't wanna doxx you by linking it straight to your number haha\n\n" +
+      url;
+
+    const encoded = encodeURIComponent(message);
+
+    window.location.href = `https://wa.me/?text=${encoded}`;
+  });
+}
 
 function groupMemoriesByDate(memories) {
   const sorted = [...memories].sort(
@@ -115,46 +150,67 @@ class MainScene extends Phaser.Scene {
     super("main-scene");
   }
 
-  preload() {
-    this.load.audio("ambient", "/assets/audio/ambient.mp3");
-
-    memoryData.forEach(m => {
-      this.load.image(m.id, `/assets/images/${m.id}.svg`);
-      this.load.audio(m.id + "_audio", `/assets/audio/${m.id}.mp3`);
-    });
-  }
-
   create() {
     this.worldWidth = 2500;
     //this.worldHeight = 4750;
     this.physics.world.setBounds(0, 0, this.worldWidth, this.worldHeight);
 
     // Player
-    this.player = this.add.rectangle(250, 250, 40, 40, 0x1e3a8a);
+    // Player (orb + aura)
+    this.player = this.add.circle(250, 250, 6, 0xffffff);
     this.physics.add.existing(this.player);
     this.player.body.setCollideWorldBounds(true);
+
+    // outer aura ring
+    this.playerRing = this.add.circle(250, 250, 18, 0xffffff, 0.08);
+
+    // subtle breathing pulse
+    this.tweens.add({
+      targets: this.player,
+      scale: 1.2,
+      duration: 1400,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut"
+    });
+
+    // trail
+    this.playerTrail = this.add.particles(0, 0, null, {
+      follow: this.player,
+
+      lifespan: 500,
+      frequency: 40,
+
+      scale: { start: 0.25, end: 0 },
+      alpha: { start: 0.4, end: 0 },
+
+      tint: 0x96b4ff,
+      quantity: 1
+    });
 
     // Camera
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0, 0, this.worldWidth, this.worldHeight);
 
-    // Detect mobile
-    this.isMobile = this.sys.game.device.os.android || this.sys.game.device.os.iOS;
+    // // Detect mobile
+    // this.isMobile = this.sys.game.device.os.android || this.sys.game.device.os.iOS;
 
     // Controls
     this.cursors = this.input.keyboard.createCursorKeys();
     this.keyE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this.keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+    this.keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+    this.keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     
-    // Mobile tap interaction
-    this.input.on("pointerdown", () => {
-      if (this.memoryOpen) return;
+    // // Mobile tap interaction
+    // this.input.on("pointerdown", () => {
+    //   if (this.memoryOpen) return;
 
-      if (this.currentMemory && this.isMobile) {
-        const mem = memoryData.find(m => m.id === this.currentMemory);
-        if (mem) this.openMemory(mem);
-      }
-    });
+    //   if (this.currentMemory && this.isMobile) {
+    //     const mem = memoryData.find(m => m.id === this.currentMemory);
+    //     if (mem) this.openMemory(mem);
+    //   }
+    // });
 
     // Title
     this.add.text(this.scale.width / 2, 20, "The Worst Dates Ever™", {
@@ -181,15 +237,46 @@ class MainScene extends Phaser.Scene {
     // Landmarks
     this.landmarks = [];
 
+    this.incompleteZones = [];
+
     positionedMemories.forEach(m => {
-      const landmark = this.add.sprite(m.x, m.y, m.id);
+      if (m.incomplete) {
+        // create invisible blocker zone
+        const zone = this.add.zone(m.x, m.y, 200, 200);
+        this.physics.add.existing(zone, true);
 
-      this.physics.add.existing(landmark, true);
+        zone.isIncomplete = true;
 
-      landmark.memoryId = m.id;
-      landmark.interactionRadius = 120;
+        this.incompleteZones.push(zone);
 
-      this.landmarks.push(landmark);
+        // faint visual indicator
+        const overlay = this.add.rectangle(
+          m.x,
+          m.y,
+          140,
+          70,
+          0x999999,
+          0.6
+        ).setDepth(2);
+
+        this.tweens.add({
+          targets: overlay,
+          alpha: { from: 0.1, to: 0.35 },
+          duration: 2000,
+          yoyo: true,
+          repeat: -1
+        });
+
+      } else {
+        const landmark = this.add.sprite(m.x, m.y, m.id);
+
+        this.physics.add.existing(landmark, true);
+
+        landmark.memoryId = m.id;
+        landmark.interactionRadius = 120;
+
+        this.landmarks.push(landmark);
+      }
     });
 
     // Timeline spine
@@ -261,9 +348,15 @@ class MainScene extends Phaser.Scene {
     // Collisions
     this.physics.add.collider(this.player, this.landmarks);
 
+    this.physics.add.collider(this.player, this.incompleteZones);
+
     // Memory UI
     this.memoryOpen = false;
     this.currentMemoryAudio = null;
+
+    // pagination state
+    this.memoryPages = [];
+    this.currentPage = 0;
 
     this.memoryContainer = this.add.container(0, 0)
       .setScrollFactor(0)
@@ -348,6 +441,18 @@ class MainScene extends Phaser.Scene {
 
     controlsContainer.add([up, left, down, right, eKey, eLabel]);
 
+    // Mac fullscreen keys
+    const ctrlKey = createKey(-10, 170, "⌃");
+    const cmdKey = createKey(40, 170, "⌘");
+    const fKey = createKey(90, 170, "F");
+
+    const fsLabel = this.add.text(40, 205, "fullscreen", {
+      fontSize: "14px",
+      color: "#444"
+    }).setOrigin(0.5);
+
+    controlsContainer.add([ctrlKey, cmdKey, fKey, fsLabel]);
+
     this.tweens.add({
       targets: controlsContainer,
       y: controlsContainer.y + 10,
@@ -359,65 +464,105 @@ class MainScene extends Phaser.Scene {
 
     this.memoryBody = this.add.text(
       this.scale.width / 2,
-      this.scale.height / 2,
+      this.scale.height / 2 + 10,
       "",
       { fontSize: "18px", color: "#333", wordWrap: { width: 500 } }
     ).setOrigin(0.5);
 
     const hint = this.add.text(
-      this.scale.width / 2,
+      this.scale.width / 2 - 40,
       this.scale.height / 2 + 120,
       "Press ESC to close",
       { fontSize: "14px", color: "#666" }
     ).setOrigin(0.5);
 
-    this.memoryContainer.add([bg, panel, this.memoryTitle, this.memoryBody, hint]);
+    // pagination controls
+    this.prevBtn = this.add.text(
+      this.scale.width / 2 - 200,
+      this.scale.height / 2 + 120,
+      "← Prev",
+      { fontSize: "16px", color: "#000" }
+    )
+    .setOrigin(0.5)
+    .setInteractive();
 
-    // Ambient Music
-    this.ambientMusic = this.sound.add("ambient", { loop: true, volume: 0.5 });
-    this.ambientMusic.play();
+    this.nextBtn = this.add.text(
+      this.scale.width / 2 + 200,
+      this.scale.height / 2 + 120,
+      "Next →",
+      { fontSize: "16px", color: "#000" }
+    )
+    .setOrigin(0.5)
+    .setInteractive();
+
+    this.pageIndicator = this.add.text(
+      this.scale.width / 2 + 90,
+      this.scale.height / 2 + 120,
+      "",
+      { fontSize: "14px", color: "#666" }
+    ).setOrigin(0.5);
+
+    // button interactions
+    this.prevBtn.on("pointerdown", () => this.changePage(-1));
+    this.nextBtn.on("pointerdown", () => this.changePage(1));
+
+    this.memoryContainer.add([
+      bg,
+      panel,
+      this.memoryTitle,
+      this.memoryBody,
+      this.prevBtn,
+      this.nextBtn,
+      this.pageIndicator,
+      hint
+    ]);
+
+    // audio state
+    this.volume = 0.5;
+    this.sound.volume = this.volume;
+
+    this.ambientMusic = this.sound.add("ambient", {
+      loop: true,
+    });
+
+    this.currentMemoryAudio = null;
+
+    // start ambient immediately
+    this.playAmbient();
 
     // Volume Slider
-    // container anchored to screen
     this.volumeUI = this.add.container(40, 40)
       .setScrollFactor(0)
       .setDepth(200);
 
-    // background bar
-    const sliderBg = this.add.rectangle(0, 0, 120, 10, 0x000000, 0.3)
+    const sliderWidth = 120;
+
+    // background
+    const sliderBg = this.add.rectangle(0, 0, sliderWidth, 10, 0x000000, 0.3)
       .setOrigin(0, 0.5);
 
-    // fill bar (visual volume level)
-    this.volumeFill = this.add.rectangle(0, 0, 60, 10, 0xffffff, 0.8)
+    // fill
+    this.volumeFill = this.add.rectangle(0, 0, sliderWidth * this.volume, 10, 0xffffff, 0.8)
       .setOrigin(0, 0.5);
 
     // knob
-    this.volumeKnob = this.add.circle(60, 0, 8, 0xffffff)
+    this.volumeKnob = this.add.circle(sliderWidth * this.volume, 0, 8, 0xffffff)
       .setInteractive({ draggable: true });
 
     this.volumeUI.add([sliderBg, this.volumeFill, this.volumeKnob]);
 
     this.input.setDraggable(this.volumeKnob);
 
-    this.volume = 0.5; // default
-
+    // drag logic
     this.volumeKnob.on("drag", (pointer, dragX) => {
-      const minX = 0;
-      const maxX = 120;
-
-      let x = Phaser.Math.Clamp(dragX, minX, maxX);
+      const x = Phaser.Math.Clamp(dragX, 0, sliderWidth);
 
       this.volumeKnob.x = x;
+      this.volumeFill.displayWidth = x;
 
-      // update fill
-      this.volumeFill.width = x;
+      this.volume = x / sliderWidth;
 
-      // convert to 0–1 range
-      this.volume = x / maxX;
-
-      // apply volume
-      if (this.ambientMusic) this.ambientMusic.setVolume(this.volume);
-      if (this.currentMemoryAudio) this.currentMemoryAudio.setVolume(this.volume);
+      this.updateAudioVolume();
     });
 
     // Mobile movement (drag to move)
@@ -433,35 +578,149 @@ class MainScene extends Phaser.Scene {
     });
   }
 
-  openMemory(memory) {
-    this.memoryOpen = true;
-    this.memoryTitle.setText(memory.title);
-    this.memoryBody.setText(memory.text);
-
-    this.memoryContainer.setAlpha(0).setVisible(true);
-    this.tweens.add({ targets: this.memoryContainer, alpha: 1, duration: 300 });
-
-    if (this.ambientMusic && this.ambientMusic.isPlaying) {
-      this.ambientMusic.stop();
-    }
-
+  playAmbient() {
     if (this.currentMemoryAudio) {
       this.currentMemoryAudio.stop();
       this.currentMemoryAudio.destroy();
       this.currentMemoryAudio = null;
     }
 
+    if (!this.ambientMusic.isPlaying) {
+      this.ambientMusic.play();
+    }
+
+    // enforce volume
+    this.ambientMusic.setVolume(this.volume);
+  }
+
+  playMemoryAudio(audioKey) {
+    if (this.ambientMusic.isPlaying) {
+      this.ambientMusic.stop();
+    }
+
+    if (this.currentMemoryAudio) {
+      this.currentMemoryAudio.stop();
+      this.currentMemoryAudio.destroy();
+    }
+
+    this.currentMemoryAudio = this.sound.add(audioKey, {
+      loop: true
+    });
+
+    this.currentMemoryAudio.play();
+
+    // ✅ CRITICAL: set volume AFTER play
+    this.currentMemoryAudio.setVolume(this.volume);
+  }
+
+  updateAudioVolume() {
+    if (this.ambientMusic) {
+      this.ambientMusic.setVolume(this.volume);
+    }
+
+    if (this.currentMemoryAudio) {
+      this.currentMemoryAudio.setVolume(this.volume);
+    }
+  }
+
+  openMemory(memory) {
+    this.memoryOpen = true;
+
+    this.memoryTitle.setText(memory.title);
+    this.memoryPages = this.paginateText(memory.text);
+    this.currentPage = 0;
+    this.updatePageDisplay();
+
+    this.memoryContainer.setAlpha(0).setVisible(true);
+    this.tweens.add({ targets: this.memoryContainer, alpha: 1, duration: 300 });
+
     const audioKey = memory.id + "_audio";
 
     if (this.cache.audio.exists(audioKey)) {
-      this.currentMemoryAudio = this.sound.add(audioKey, {
-        loop: true,
-        volume: this.volume
-      });
-      this.currentMemoryAudio.play();
+      this.playMemoryAudio(audioKey);
     } else {
-      console.log(`Audio missing for: ${audioKey}`);
+      console.warn("Audio not loaded:", audioKey);
+      this.playAmbient();
     }
+  }
+
+  paginateText(text, maxCharsPerPage = 400) {
+    text = text
+      .replace(/[ \t]+/g, " ")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+
+    // manual page breaks
+    const rawPages = text.split("[PAGE_BREAK]");
+    const pages = [];
+
+    for (let block of rawPages) {
+      const paragraphs = block.split("\n\n");
+      let current = "";
+
+      for (let p of paragraphs) {
+        // 👉 weight line breaks inside paragraph
+        const weightedLength = (str) =>
+          str.replace(/\n/g, "XX").length; 
+          // each \n ≈ 2 chars
+
+        // handle oversized paragraph
+        while (weightedLength(p) > maxCharsPerPage) {
+          const slice = p.slice(0, maxCharsPerPage);
+
+          if (current) {
+            pages.push(current.trim());
+            current = "";
+          }
+
+          pages.push(slice.trim());
+          p = p.slice(maxCharsPerPage);
+        }
+
+        const candidate = current
+          ? current + "\n\n" + p
+          : p;
+
+        if (weightedLength(candidate) > maxCharsPerPage) {
+          if (current) pages.push(current.trim());
+          current = p;
+        } else {
+          current = candidate;
+        }
+      }
+
+      if (current) {
+        pages.push(current.trim());
+        current = "";
+      }
+    }
+
+    return pages;
+  }
+
+  changePage(direction) {
+    if (!this.memoryPages.length) return;
+
+    this.currentPage = Phaser.Math.Clamp(
+      this.currentPage + direction,
+      0,
+      this.memoryPages.length - 1
+    );
+
+    this.updatePageDisplay();
+  }
+
+  updatePageDisplay() {
+    this.memoryBody.setText(this.memoryPages[this.currentPage]);
+
+    this.pageIndicator.setText(
+      `${this.currentPage + 1} / ${this.memoryPages.length}`
+    );
+
+    this.prevBtn.setAlpha(this.currentPage === 0 ? 0.3 : 1);
+    this.nextBtn.setAlpha(
+      this.currentPage === this.memoryPages.length - 1 ? 0.3 : 1
+    );
   }
 
   closeMemory() {
@@ -472,6 +731,8 @@ class MainScene extends Phaser.Scene {
       onComplete: () => {
         this.memoryContainer.setVisible(false);
         this.memoryOpen = false;
+        this.memoryPages = [];
+        this.currentPage = 0;
 
         if (this.currentMemoryAudio) {
           this.currentMemoryAudio.stop();
@@ -479,59 +740,163 @@ class MainScene extends Phaser.Scene {
           this.currentMemoryAudio = null;
         }
 
-        if (this.ambientMusic) {
-          this.ambientMusic.play();
-        }
+        // resume ambient
+        this.playAmbient();
       }
     });
   }
 
   update() {
-    const speed = 2500;
+    const speed = 3000;
     this.currentMemory = null;
     this.promptText.setVisible(false);
+
+    this.playerRing.x = this.player.x;
+    this.playerRing.y = this.player.y;
 
     if (this.memoryOpen) {
       this.player.body.setVelocity(0);
       if (Phaser.Input.Keyboard.JustDown(this.keyESC)) {
         this.closeMemory();
       }
+      if (Phaser.Input.Keyboard.JustDown(this.keyLEFT)) {
+        this.changePage(-1);
+      }
+
+      if (Phaser.Input.Keyboard.JustDown(this.keyRIGHT)) {
+        this.changePage(1);
+      }
       return;
     }
 
-    this.player.body.setVelocity(0);
-    this.player.body.setGravityY(0);
+    const targetVelocityX =
+      (this.cursors.left.isDown ? -1 : 0) +
+      (this.cursors.right.isDown ? 1 : 0);
 
-    if (this.cursors.left.isDown) this.player.body.setVelocityX(-speed);
-    if (this.cursors.right.isDown) this.player.body.setVelocityX(speed);
-    if (this.cursors.up.isDown) this.player.body.setVelocityY(-speed);
-    if (this.cursors.down.isDown) this.player.body.setVelocityY(speed);
+    const targetVelocityY =
+      (this.cursors.up.isDown ? -1 : 0) +
+      (this.cursors.down.isDown ? 1 : 0);
+
+    this.player.body.velocity.x = Phaser.Math.Linear(
+      this.player.body.velocity.x,
+      targetVelocityX * speed,
+      0.1
+    );
+
+    this.player.body.velocity.y = Phaser.Math.Linear(
+      this.player.body.velocity.y,
+      targetVelocityY * speed,
+      0.1
+    );
+
+    let blocked = false;
+
+    this.incompleteZones.forEach(zone => {
+      const d = Phaser.Math.Distance.Between(
+        this.player.x,
+        this.player.y,
+        zone.x,
+        zone.y
+      );
+
+      if (d < 140) {
+        blocked = true;
+      }
+    });
 
     let closest = null;
     let closestDist = Infinity;
 
     this.landmarks.forEach(l => {
-      const d = Phaser.Math.Distance.Between(
+    const d = Phaser.Math.Distance.Between(
+      this.player.x,
+      this.player.y,
+      l.x,
+      l.y
+    );
+
+    if (d < l.interactionRadius && d < closestDist) {
+      closest = l;
+      closestDist = d;
+    }
+  });
+
+    // apply effect on based on closest
+    if (closest) {
+      const dist = Phaser.Math.Distance.Between(
+        this.player.x,
+        this.player.y,
+        closest.x,
+        closest.y
+      );
+
+      const t = Phaser.Math.Clamp(1 - dist / 250, 0, 1);
+
+      this.player.setScale(1 + t * 0.8);
+      this.playerRing.setScale(1 + t * 2);
+
+      // color shift (cold → warm)
+      const color = Phaser.Display.Color.Interpolate.ColorWithColor(
+        new Phaser.Display.Color(150, 180, 255), // far (soft blue)
+        new Phaser.Display.Color(255, 120, 160), // near (pinkish)
+        100,
+        t * 100
+      );
+
+      const finalColor = Phaser.Display.Color.GetColor(color.r, color.g, color.b);
+      this.player.setFillStyle(finalColor, 0.9);
+
+      // aura gets stronger
+      this.playerRing.setFillStyle(finalColor, 0.15 + t * 0.25);
+
+    } else {
+      // reset
+      this.player.setScale(1);
+      this.playerRing.setScale(1);
+      this.player.setFillStyle(0x96b4ff, 0.8);
+      this.playerRing.setFillStyle(0x96b4ff, 0.1);
+    }
+
+    this.landmarks.forEach((l, i) => {
+      // retains original float
+      l.y += Math.sin(this.time.now * 0.002 + i) * 0.1;
+
+      const dist = Phaser.Math.Distance.Between(
         this.player.x,
         this.player.y,
         l.x,
         l.y
       );
-      if (d < l.interactionRadius && d < closestDist) {
-        closest = l;
-        closestDist = d;
-      }
-    });
 
-    this.landmarks.forEach((l, i) => {
-      l.y += Math.sin(this.time.now * 0.002 + i) * 0.1;
+      const t = Phaser.Math.Clamp(1 - dist / 300, 0, 1);
+
+      // very subtle tint shift (barely noticeable, but felt)
+      const color = Phaser.Display.Color.Interpolate.ColorWithColor(
+        new Phaser.Display.Color(255, 255, 255),   // neutral
+        new Phaser.Display.Color(255, 220, 201),   // warm
+        100,
+        t * 100
+      );
+
+      const tint = Phaser.Display.Color.GetColor(color.r, color.g, color.b);
+      l.setTint(tint);
     });
 
 
     if (closest) {
       this.currentMemory = closest.memoryId;
       this.promptText
-        .setText(this.isMobile ? "Tap to remember" : "Press E to remember")
+        .setText("Press E to remember")
+        .setPosition(
+          this.player.x - this.cameras.main.scrollX,
+          this.player.y - 50 - this.cameras.main.scrollY
+        )
+        .setVisible(true);
+    }
+
+    if (blocked) {
+      this.promptText
+        .setText("Not yet...")
         .setPosition(
           this.player.x - this.cameras.main.scrollX,
           this.player.y - 50 - this.cameras.main.scrollY
@@ -546,36 +911,46 @@ class MainScene extends Phaser.Scene {
   }
 }
 
-const config = {
-  type: Phaser.AUTO,
+function initGame() {
+  const config = {
+    type: Phaser.AUTO,
 
-  parent: "game-container",
+    parent: "game-container",
 
-  width: 2560,
-  height: 1440,
+    width: 2560,
+    height: 1440,
 
-  scale: {
-    mode: Phaser.Scale.ENVELOP,
-    autoCenter: Phaser.Scale.NO_CENTER,
+    scale: {
+      mode: Phaser.Scale.ENVELOP,
+      autoCenter: Phaser.Scale.NO_CENTER,
 
-    min: {
-      width: 800,
-      height: 600
+      min: {
+        width: 800,
+        height: 600
+      },
+      max: {
+        width: 2560,
+        height: 1440
+      }
     },
-    max: {
-      width: 2560,
-      height: 1440
-    }
-  },
 
-  transparent: true,
+    transparent: true,
 
-  physics: {
-    default: "arcade",
-    arcade: { debug: false }
-  },
+    physics: {
+      default: "arcade",
+      arcade: { debug: false }
+    },
 
-  scene: MainScene
-};
+    scene: [PreloadScene, MainScene]
+  };
 
-new Phaser.Game(config);
+  new Phaser.Game(config);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  if (isMobileDevice()) {
+    renderMobileGate();
+  } else {
+    initGame();
+  }
+});

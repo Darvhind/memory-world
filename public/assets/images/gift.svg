@@ -1,0 +1,18 @@
+<svg width="140" height="82" viewBox="0 -12 140 82" xmlns="http://www.w3.org/2000/svg">
+  <!-- Box base-->
+  <rect x="0" y="14" width="140" height="56" fill="#F8C8DC" rx="8"/>
+
+  <!-- Lid -->
+  <rect x="0" y="0" width="140" height="18" fill="#F4B6CF" rx="8"/>
+
+  <!-- Ribbon vertical -->
+  <rect x="66" y="0" width="8" height="70" fill="#CBAACB"/>
+
+  <!-- Ribbon horizontal -->
+  <rect x="0" y="34" width="140" height="8" fill="#CBAACB"/>
+
+  <!-- Bow -->
+  <ellipse cx="62" cy="0" rx="12" ry="7" fill="#CBAACB"/>
+  <ellipse cx="78" cy="0" rx="12" ry="7" fill="#CBAACB"/>
+  <circle cx="70" cy="0" r="5" fill="#B48FB4"/>
+</svg>
