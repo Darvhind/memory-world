@@ -76,7 +76,7 @@ After just a few minutes of small talk, we genuinely find a rythm, and engage in
 At some point you ask if we should get dinner, and make a mental ntoe that I'm not doing too terribly.
 [PAGE_BREAK]
 Hypothesis:
-Strong conversational range and confident opinions. Further observance required.
+Strong conversational range and confident opinions. Further observation required.
 
 Note:
 Abandoned coffee in favour of first hojicha - unexpectedly delightful results.`},{id:"kenny_hills",date:"2026-01-17",title:"Dinner With a Stranger Who Wasn't",text:`You order a salad.
