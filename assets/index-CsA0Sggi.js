@@ -73,7 +73,7 @@ I arrive 2 minutes late because I am, in fact, a dumbass who went to the wrong o
 [PAGE_BREAK]
 After just a few minutes of small talk, we genuinely find a rythm, and engage in very pleasant conversation.
 
-At some point you ask if we should get dinner, and make a mental ntoe that I'm not doing too terribly.
+At some point you ask if we should get dinner, and make a mental note that I'm not doing too terribly.
 [PAGE_BREAK]
 Hypothesis:
 Strong conversational range and confident opinions. Further observation required.
@@ -104,7 +104,7 @@ The durian itself? Gorgeous.
 
 Yet it’s not the highlight.
 
-We didn’t know it just then, but that date would end up foreshadowing a pattern that we’d soon become the last people to leave many establishments we went to together, across many many future dates.
+We didn’t know it just then, but that date would end up foreshadowing a pattern that we’d soon become the last people to leave many establishments we went to together, across many, many future dates.
 [PAGE_BREAK]
 I decide to accompany you home as I felt like I could use more time with you. We ride the MRT and chat more.
 
